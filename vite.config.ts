@@ -4,14 +4,14 @@ import dts from 'vite-plugin-dts';
 export default defineConfig({
   build: {
     lib: {
-      entry: './index.ts', 
+      entry: './index.ts',
       name: 'ReactClockAnalogDigital',
       fileName: (format) =>
-        format === 'es' ? `react-clock-analog-digital.esm.js` : `react-clock-analog-digital.${format}.js`,
-      formats: ['es', 'cjs'], 
+        format === 'es' ? `clock-analog-digital-react.esm.js` : `clock-analog-digital-react.${format}.js`,
+      formats: ['es', 'cjs'],
     },
     rollupOptions: {
-      external: ['react', 'react-dom', ],
+      external: ['react', 'react-dom',],
       output: {
         globals: {
           react: 'React',

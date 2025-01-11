@@ -1,16 +1,16 @@
 {
-  "name": "react-clock-analog-digital",
+  "name": "clock-analog-digital-react",
   "version": "1.0.0",
   "description": "A reusable React clock package with analog and digital clocks",
   "type": "module",
-  "main": "dist/react-clock-analog-digital.cjs.js",
-  "module": "dist/react-clock-analog-digital.esm.js",
+  "main": "dist/clock-analog-digital-react.cjs.js",
+  "module": "dist/clock-analog-digital-react.esm.js",
   "types": "dist/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/react-clock-analog-digital.esm.js",
-      "require": "./dist/react-clock-analog-digital.cjs.js"
+      "import": "./dist/clock-analog-digital-react.esm.js",
+      "require": "./dist/clock-analog-digital-react.cjs.js"
     }
   },
   "files": [
