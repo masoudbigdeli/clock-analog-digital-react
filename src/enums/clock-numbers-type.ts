@@ -1,0 +1,8 @@
+enum CLOCK_NUMBER_TYPE {
+    ROMAN = "ROMAN",
+    ENGLISH = "ENGLISH",
+    LINES = "LINES",
+    CUSTOM_ELEMENT = "CUSTOM_ELEMENT"
+}
+
+export default CLOCK_NUMBER_TYPE
