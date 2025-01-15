@@ -51,6 +51,7 @@
     "type": "git",
     "url": "https://github.com/masoudbigdeli/clock-analog-digital-react"
   },
+  "homepage": "https://react-clock-analog-digital-demo.vercel.app",
   "keywords": [
     "react",
     "clock",
