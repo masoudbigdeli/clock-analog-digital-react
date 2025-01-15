@@ -25,7 +25,7 @@ const DigitalClock: FC<DigitalClockProps> = (props) => {
     activeSegmentColor,
     inactiveSegmentColor,
     dotsColor,
-    digitalClockLogoComponent = <>D-Clock</>
+    digitalClockLogoComponent = <>Logo</>
   } = props
 
   const { seconds, minutes, hours } = useTime()
