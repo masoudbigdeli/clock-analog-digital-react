@@ -1,4 +1,3 @@
-import React from "react"
 import { ClockProps } from "../../models/clockInterfaces"
 import AnalogClock from "./analog-clock"
 import DigitalClock from "./digital-clock"
