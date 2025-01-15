@@ -25,7 +25,7 @@ export interface ClockBaseProps {
 export interface AnalogClockProps extends ClockBaseProps {
     clockMode: 'analog';
     analogColorThemeMode?: `${THEME_MODE}`
-    clockBorderThikness?: number;
+    clockBorderThickness?: number;
     clockNumbersType?: string;
     clockLogoSrcAndOffset?: { cmp: React.ReactNode; offset: number };
     hasPrimaryTicks?: boolean;

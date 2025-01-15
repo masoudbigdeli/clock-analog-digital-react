@@ -68,7 +68,7 @@ Below is a list of available props for both **Analog** and **Digital** clocks. T
 | Prop Name                     | Type                                      | Description                                                                 |
 |-------------------------------|-------------------------------------------|-----------------------------------------------------------------------------|
 | `analogColorThemeMode`         | `string`                                  | Defines the color theme for the analog clock (`'DARK'`, `'LIGHT', 'BLUE_DARK','RED_DARK','AUTUMN'`).|
-| `clockBorderThikness`          | `number`                                  | Defines the thickness of the analog clock's border.                         |
+| `clockBorderThickness`          | `number`                                  | Defines the thickness of the analog clock's border.                         |
 | `clockNumbersType`             | `string`                                  | Defines the numbering system for the analog clock (e.g., `'ENGLISH'`, `'ROMAN'`). |
 | `clockLogoSrcAndOffset`        | `{ cmp: React.ReactNode; offset: number }` | Defines a logo component and its offset position on the analog clock.        |
 | `hasPrimaryTicks`              | `boolean`                                 | Whether the analog clock shows primary ticks (default: `false`).             |

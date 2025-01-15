@@ -11,7 +11,7 @@ export interface TickMarkStyle extends CSSProperties {
 const useTickMarksStyles = (
   theme: AppThemeModel,
   radius: number,
-  clockBorderThikness: number,
+  clockBorderThickness: number,
   hasPrimaryTicks: boolean,
   hasMajorTicks: boolean,
   hasMinorTicks: boolean,
@@ -50,8 +50,8 @@ const useTickMarksStyles = (
   for (let i = 0; i < totalMarks; i++) {
     const angle = i * 6
     const angleRad = (angle * Math.PI) / 180
-    const x = (radius - (clockBorderThikness ? clockBorderThikness * 8 : radius * 0.07)) * Math.cos(angleRad)
-    const y = (radius - (clockBorderThikness ? clockBorderThikness * 8 : radius * 0.07)) * Math.sin(angleRad)
+    const x = (radius - (clockBorderThickness ? clockBorderThickness * 8 : radius * 0.07)) * Math.cos(angleRad)
+    const y = (radius - (clockBorderThickness ? clockBorderThickness * 8 : radius * 0.07)) * Math.sin(angleRad)
 
     let type: TickMarkType = "minor"
     let width: string

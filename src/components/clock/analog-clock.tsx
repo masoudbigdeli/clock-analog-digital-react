@@ -11,7 +11,7 @@ import AppThemeModel from "../../models/theme-model";
 const AnalogClock: FC<AnalogClockProps> = (props) => {
     const {
         analogColorThemeMode = 'DARK',
-        clockBorderThikness = 2,
+        clockBorderThickness = 2,
         clockLogoSrcAndOffset = { cmp: <></>, offset: 0 },
         clockNumbersType = 'ENGLISH',
         hasPrimaryTicks = true,
@@ -38,9 +38,9 @@ const AnalogClock: FC<AnalogClockProps> = (props) => {
 
     const { seconds, minutes, hours } = useTime();
 
-    const effectiveClockBorderThikness = useMemo(
-        () => (clockBorderThikness <= 2 && clockBorderThikness >= 0 ? clockBorderThikness : 2),
-        [clockBorderThikness]
+    const effectiveClockBorderThickness = useMemo(
+        () => (clockBorderThickness <= 2 && clockBorderThickness >= 0 ? clockBorderThickness : 2),
+        [clockBorderThickness]
     );
 
     const effectivePrimaryNumbersFontSize = useMemo(
@@ -89,7 +89,7 @@ const AnalogClock: FC<AnalogClockProps> = (props) => {
     const tickMarks = useTickMarksStyles(
         theme,
         radius,
-        clockBorderThikness,
+        clockBorderThickness,
         hasPrimaryTicks,
         hasMajorTicks,
         hasMinorTicks,
@@ -102,7 +102,7 @@ const AnalogClock: FC<AnalogClockProps> = (props) => {
         theme,
         radius,
         clockNumbersType,
-        effectiveClockBorderThikness,
+        effectiveClockBorderThickness,
         effectivePrimaryNumbersFontSize,
         effectiveMajorNumbersFontSize,
         effectivePrimaryNumbersColor,
@@ -115,7 +115,7 @@ const AnalogClock: FC<AnalogClockProps> = (props) => {
 
     return (
         <ThemeProvider theme={theme}>
-            <AnalogClockBackground ref={clockRef} borderThikness={effectiveClockBorderThikness * (radius / 16 * 0.08)}>
+            <AnalogClockBackground ref={clockRef} borderThikness={effectiveClockBorderThickness * (radius / 16 * 0.08)}>
                 {tickMarks.map((tick, index) => (
                     <div style={{ ...tick }} key={index}>
                         {[0, 15, 30, 45].includes(index) ? UserPrimaryTicksComponent : index % 5 === 0 ? UserMajorTicksComponent : UserMinorTicksComponent}

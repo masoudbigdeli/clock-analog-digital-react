@@ -6,7 +6,7 @@ interface ClockNumbersProps {
   theme: AppThemeModel;
   radius: number;
   clockNumbersType: string;
-  effectiveClockBorderThikness: number;
+  effectiveClockBorderThickness: number;
   effectivePrimaryNumbersFontSize: number;
   effectiveMajorNumbersFontSize: number;
   effectivePrimaryNumbersColor?: string;
@@ -33,7 +33,7 @@ const useClockNumbers = ({
   theme,
   radius,
   clockNumbersType,
-  effectiveClockBorderThikness,
+  effectiveClockBorderThickness,
   effectivePrimaryNumbersFontSize,
   effectiveMajorNumbersFontSize,
   effectivePrimaryNumbersColor,
@@ -48,7 +48,7 @@ const useClockNumbers = ({
 
     const calculatePosition = (index: number): { x: number; y: number } => {
       const angle = (index + 1) * 30 - 90;
-      const offset = radius - (effectiveClockBorderThikness > 1.4 ? effectiveClockBorderThikness * 3 : 0) - radius * 0.25;
+      const offset = radius - (effectiveClockBorderThickness > 1.4 ? effectiveClockBorderThickness * 3 : 0) - radius * 0.25;
       return {
         x: offset * Math.cos((angle * Math.PI) / 180),
         y: offset * Math.sin((angle * Math.PI) / 180),
@@ -110,7 +110,7 @@ const useClockNumbers = ({
   }, [
     radius,
     clockNumbersType,
-    effectiveClockBorderThikness,
+    effectiveClockBorderThickness,
     effectivePrimaryNumbersFontSize,
     effectiveMajorNumbersFontSize,
     effectivePrimaryNumbersColor,
