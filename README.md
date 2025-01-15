@@ -1,50 +1,106 @@
-# React + TypeScript + Vite
+Here’s a sample `README.md` file for your **Clock React** component, including the installation instructions, usage, example code, and a table for the available props.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+---
 
-Currently, two official plugins are available:
+# Clock React Component
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+`clock-analog-digital-react` is a React component that provides two modes for displaying a clock: **Analog** and **Digital**. All inner components are customizable by the user, and you can easily configure your desired clock.
 
-## Expanding the ESLint configuration
+You can view a live demo and configure your clock [here](https://react-clock-analog-digital-demo.vercel.app).
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Installation
 
-- Configure the top-level `parserOptions` property like this:
+To install the package, run the following command:
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+```bash
+npm i clock-analog-digital-react
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## Importing the Component
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+You can import the `Clock` component into your React project like this:
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+```typescript
+import Clock from 'clock-analog-digital-react';
 ```
+
+## Usage
+
+### Analog Clock
+
+To display the analog clock, set the `clockMode` prop to `'analog'`.
+
+```tsx
+import Clock from 'clock-analog-digital-react';
+
+const App = () => {
+  return (
+    <Clock clockMode="analog" />
+  );
+};
+
+export default App;
+```
+
+### Digital Clock
+
+To display the digital clock, set the `clockMode` prop to `'digital'`.
+
+```tsx
+import Clock from 'clock-analog-digital-react';
+
+const App = () => {
+  return (
+    <Clock clockMode="digital" />
+  );
+};
+
+export default App;
+```
+
+## Props
+
+Below is a list of available props for both **Analog** and **Digital** clocks. The `clockMode` prop must be either `'analog'` or `'digital'`.
+
+| Prop Name                     | Type                                      | Description                                                                 |
+|-------------------------------|-------------------------------------------|-----------------------------------------------------------------------------|
+| `clockMode`                    | `'analog' \| 'digital'`                  | Mode for the clock. Choose either `'analog'` or `'digital'`.                |
+
+### Analog Clock Props
+
+| Prop Name                     | Type                                      | Description                                                                 |
+|-------------------------------|-------------------------------------------|-----------------------------------------------------------------------------|
+| `analogColorThemeMode`         | `string`                                  | Defines the color theme for the analog clock (`'DARK'`, `'LIGHT', 'BLUE_DARK','RED_DARK','AUTUMN'`).|
+| `clockBorderThikness`          | `number`                                  | Defines the thickness of the analog clock's border.                         |
+| `clockNumbersType`             | `string`                                  | Defines the numbering system for the analog clock (e.g., `'ENGLISH'`, `'ROMAN'`). |
+| `clockLogoSrcAndOffset`        | `{ cmp: React.ReactNode; offset: number }` | Defines a logo component and its offset position on the analog clock.        |
+| `hasPrimaryTicks`              | `boolean`                                 | Whether the analog clock shows primary ticks (default: `false`).             |
+| `hasMajorTicks`                | `boolean`                                 | Whether the analog clock shows major ticks (default: `false`).               |
+| `hasMinorTicks`                | `boolean`                                 | Whether the analog clock shows minor ticks (default: `false`).               |
+| `hasPrimaryNumbers`            | `boolean`                                 | Whether the analog clock shows primary numbers (default: `false`).           |
+| `hasMajorNumbers`              | `boolean`                                 | Whether the analog clock shows major numbers (default: `false`).             |
+| `majorNumbersFontSize`         | `number`                                  | Defines the font size for major numbers on the analog clock.                 |
+| `primaryNumbersFontSize`       | `number`                                  | Defines the font size for primary numbers on the analog clock.               |
+| `majorNumbersColor`            | `string`                                  | Defines the color of the major numbers (e.g., `'#FFFFFF'`).                  |
+| `primaryNumbersColor`          | `string`                                  | Defines the color of the primary numbers (e.g., `'#e6272d'`).                |
+| `UserPrimaryTicksComponent`    | `React.ReactNode`                         | Custom component for primary ticks.                                          |
+| `UserMajorTicksComponent`      | `React.ReactNode`                         | Custom component for major ticks.                                            |
+| `UserMinorTicksComponent`      | `React.ReactNode`                         | Custom component for minor ticks.                                            |
+| `PrimaryNumbersComponent`      | `React.ReactNode`                         | Custom component for primary numbers.                                        |
+| `MajorNumbersComponent`        | `React.ReactNode`                         | Custom component for major numbers.                                          |
+| `ClockCenterComponent`         | `React.ReactNode`                         | Custom component for the clock center.                                       |
+
+### Digital Clock Props
+
+| Prop Name                     | Type                                      | Description                                                                 |
+|-------------------------------|-------------------------------------------|-----------------------------------------------------------------------------|
+| `digitalColorThemeMode`        | `string`                                  | Defines the color theme for the digital clock (`'DARK'`, `'LIGHT', 'BLUE_DARK','RED_DARK','AUTUMN'`).|
+| `padding`                      | `number`                                  | Defines the padding around the digital clock.                               |
+| `twentyFourHours`              | `boolean`                                 | Whether the digital clock shows in 24-hour format (default: `false`).        |
+| `backgroundColor`              | `string`                                  | Defines the background color of the digital clock.                          |
+| `activeSegmentColor`           | `string`                                  | Defines the color of the active segment in the digital clock.                |
+| `inactiveSegmentColor`         | `string`                                  | Defines the color of the inactive segments in the digital clock.             |
+| `dotsColor`                    | `string`                                  | Defines the color of the dots in the digital clock.                          |
+| `digitalClockLogoComponent`    | `React.ReactNode`                         | Custom logo component for the digital clock.                                |
+
+
