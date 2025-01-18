@@ -15,10 +15,15 @@ import {
 import SevenSegmentDigit from './seven-segment-digit'
 import useTime from '../../../hooks/use-time'
 import { timeToSegments } from '../../../utils/timeToSegments'
+import AlarmRing from '../../alarm/alarm-ring'
+import AlarmSetter from '../../alarm/alarm-setter'
+import useCheckAlarm from '../../../hooks/use-check-alarm'
 
 const DigitalClock: FC<DigitalClockProps> = (props) => {
   const {
     digitalColorThemeMode = 'LIGHT',
+    hasAlarm = true,
+    onAlarm = () => console.log('digital clock alarm!'),
     padding = 0,
     twentyFourHours = false,
     backgroundColor,
@@ -29,6 +34,18 @@ const DigitalClock: FC<DigitalClockProps> = (props) => {
   } = props
 
   const { seconds, minutes, hours } = useTime()
+  const [settingAlarm, setSettingAlarm] = useState<boolean>(false)
+  const [alarmTime, setAlarmTime] = useState<Date>(new Date('2011-10-10T14:48:00'))
+
+
+  const isAlarmTime = useCheckAlarm(alarmTime);
+
+  useEffect(() => {
+    if (isAlarmTime) {
+      onAlarm()
+    }
+  }, [isAlarmTime]);
+
 
   const usedHour = useMemo(() => (twentyFourHours ? hours : hours % 12), [twentyFourHours, hours])
 
@@ -44,6 +61,11 @@ const DigitalClock: FC<DigitalClockProps> = (props) => {
       setTotalWidth(totalWidthRef.current.offsetWidth)
     }
   }, [])
+
+  const handleSetAlarm = useCallback((alarmTimeToSet: Date) => {
+    setSettingAlarm(false)
+    setAlarmTime(alarmTimeToSet)
+}, [])
 
   useLayoutEffect(() => {
     const observer = new ResizeObserver(() => {
@@ -114,9 +136,13 @@ const DigitalClock: FC<DigitalClockProps> = (props) => {
                 />
               </SecondDigitWrapper>
             </SecondsWrapper>
-            <LogoWrapper style={{ color: 'red' }}>{digitalClockLogoComponent}</LogoWrapper>
+            <LogoWrapper style={{ color: 'red' }}>
+              {!settingAlarm && hasAlarm && <AlarmRing themeMode={digitalColorThemeMode} iconSize={totalWidth * 0.11} onClick={() => setSettingAlarm(true)} />}
+
+            </LogoWrapper>
           </RightSubSection>
         </ClockSection>
+        {settingAlarm && <AlarmSetter width={totalWidth} top={0.025} left={0.25} onAlarmSet={handleSetAlarm} onCancel={() => setSettingAlarm(false)} />}
       </DigitalClockBackground>
     </ThemeProvider>
   )

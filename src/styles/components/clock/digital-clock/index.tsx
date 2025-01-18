@@ -17,7 +17,8 @@ export const DigitalClockBackground = styled.div<DigitalClockBackgroundProps & {
     alignItems: 'center',
     padding: `${padding}rem`,
     direction: 'ltr',
-    backgroundColor: backgroundColor || theme.color.digitalClockColors.background
+    backgroundColor: backgroundColor || theme.color.digitalClockColors.background,
+    position: 'relative'
   })
 )
 

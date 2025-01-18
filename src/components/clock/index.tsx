@@ -1,5 +1,5 @@
 import { ClockProps } from "../../models/clockInterfaces"
-import AnalogClock from "./analog-clock"
+import AnalogClock from "./analog-clock/analog-clock"
 import DigitalClock from "./digital-clock"
 
 const Clock = (props: ClockProps) => {

@@ -13,6 +13,7 @@ const autumnColor: AppThemeModel['color'] = {
     primaryTicks: '#632626',
     majorTicks: '#F89D13',
     minorTicks: '#FFFFEC',
+    ringColor: '#f5da0f',
     1000: '#0D0D0D',
   },
   digitalClockColors: {

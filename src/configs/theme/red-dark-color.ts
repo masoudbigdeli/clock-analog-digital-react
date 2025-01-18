@@ -13,6 +13,7 @@ const redDarkColor: AppThemeModel['color'] = {
     primaryTicks: '#e3989d',
     majorTicks: '#e3989d',
     minorTicks: '#f2ced0',
+    ringColor: '#a3920f',
     1000: '#0D0D0D',
   },
   digitalClockColors: {

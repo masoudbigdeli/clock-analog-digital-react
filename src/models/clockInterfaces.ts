@@ -20,6 +20,8 @@ export interface ClockNumbersProps {
 
 export interface ClockBaseProps {
     clockMode: 'analog' | 'digital';
+    hasAlarm?: boolean
+    onAlarm: () => void
 }
 
 export interface AnalogClockProps extends ClockBaseProps {
@@ -43,6 +45,7 @@ export interface AnalogClockProps extends ClockBaseProps {
     PrimaryNumbersComponent?: React.ReactNode;
     MajorNumbersComponent?: React.ReactNode;
     ClockCenterComponent?: React.ReactNode;
+
 }
 
 export interface DigitalClockProps extends ClockBaseProps {

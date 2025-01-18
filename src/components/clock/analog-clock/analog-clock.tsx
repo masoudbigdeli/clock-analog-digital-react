@@ -1,16 +1,21 @@
-import { FC, useEffect, useMemo, useRef, useState, useCallback } from "react";
-import { ThemeProvider } from '@emotion/react';
-import { AnalogClockProps } from "../../models/clockInterfaces";
-import appTheme from "../../configs/theme";
-import useTime from "../../hooks/use-time";
-import useTickMarksStyles from "../../hooks/use-tick-marks-styles";
-import useClockNumbers from "../../hooks/use-clock-numbers";
-import AnalogClockBackground, { CenterCircle, ClockCenterWapper, ClockLogoWrapper, ClockNumberWrapper, HourHand, MinuteHand, SecondHand } from "../../styles/components/clock";
-import AppThemeModel from "../../models/theme-model";
+import { FC, useEffect, useMemo, useRef, useState, useCallback } from "react"
+import { ThemeProvider } from '@emotion/react'
+import { AnalogClockProps } from "../../../models/clockInterfaces"
+import appTheme from "../../../configs/theme"
+import useTime from "../../../hooks/use-time"
+import useTickMarksStyles from "../../../hooks/use-tick-marks-styles"
+import useClockNumbers from "../../../hooks/use-clock-numbers"
+import AnalogClockBackground, { CenterCircle, ClockCenterWapper, ClockLogoWrapper, ClockNumberWrapper, HourHand, MinuteHand, SecondHand } from "../../../styles/components/clock"
+import AppThemeModel from "../../../models/theme-model"
+import AlarmRing from "../../alarm/alarm-ring"
+import AlarmSetter from "../../alarm/alarm-setter"
+import useCheckAlarm from "../../../hooks/use-check-alarm"
 
 const AnalogClock: FC<AnalogClockProps> = (props) => {
     const {
         analogColorThemeMode = 'DARK',
+        hasAlarm = true,
+        onAlarm = () => console.log('analog clock alarm!'),
         clockBorderThickness = 2,
         clockLogoSrcAndOffset = { cmp: <></>, offset: 0 },
         clockNumbersType = 'ENGLISH',
@@ -29,62 +34,79 @@ const AnalogClock: FC<AnalogClockProps> = (props) => {
         ClockCenterComponent,
         PrimaryNumbersComponent,
         MajorNumbersComponent,
-    } = props;
+    } = props
 
-    const clockRef = useRef<HTMLDivElement | null>(null);
-    const [radius, setRadius] = useState(0);
+    const clockRef = useRef<HTMLDivElement | null>(null)
+    const [radius, setRadius] = useState(0)
+    const [settingAlarm, setSettingAlarm] = useState<boolean>(false)
+    const [alarmTime, setAlarmTime] = useState<Date>(new Date('2011-10-10T14:48:00'))
 
-    const theme: AppThemeModel = useMemo(() => appTheme(analogColorThemeMode), [analogColorThemeMode]);
+    const isAlarmTime = useCheckAlarm(alarmTime)
 
-    const { seconds, minutes, hours } = useTime();
+    useEffect(() => {
+        if (isAlarmTime) {
+            onAlarm()
+        }
+    }, [isAlarmTime])
+
+    const theme: AppThemeModel = useMemo(() => appTheme(analogColorThemeMode), [analogColorThemeMode])
+
+    const { seconds, minutes, hours } = useTime()
 
     const effectiveClockBorderThickness = useMemo(
         () => (clockBorderThickness <= 2 && clockBorderThickness >= 0 ? clockBorderThickness : 2),
         [clockBorderThickness]
-    );
+    )
 
     const effectivePrimaryNumbersFontSize = useMemo(
         () => (!PrimaryNumbersComponent && primaryNumbersFontSize) || 0.2,
         [PrimaryNumbersComponent, primaryNumbersFontSize]
-    );
+    )
 
     const effectivePrimaryNumbersColor = useMemo(
         () => (!PrimaryNumbersComponent ? primaryNumbersColor : ''),
         [PrimaryNumbersComponent, primaryNumbersColor]
-    );
+    )
 
     const effectiveMajorNumbersFontSize = useMemo(
         () => (!MajorNumbersComponent && majorNumbersFontSize) || 0.15,
         [MajorNumbersComponent, majorNumbersFontSize]
-    );
+    )
 
     const effectiveMajorNumbersColor = useMemo(
         () => (!MajorNumbersComponent ? majorNumbersColor : ''),
         [MajorNumbersComponent, majorNumbersColor]
-    );
+    )
 
-    const secondsAngle = useMemo(() => seconds * 6, [seconds]);
-    const minutesAngle = useMemo(() => minutes * 6 + seconds * 0.1, [minutes, seconds]);
-    const hourAngle = useMemo(() => (hours % 12) * 30 + minutes * 0.5, [hours, minutes]);
+    const secondsAngle = useMemo(() => seconds * 6, [seconds])
+    const minutesAngle = useMemo(() => minutes * 6 + seconds * 0.1, [minutes, seconds])
+    const hourAngle = useMemo(() => (hours % 12) * 30 + minutes * 0.5, [hours, minutes])
 
     const updateClockSize = useCallback(() => {
         if (clockRef.current) {
-            const size = Math.min(clockRef.current.offsetWidth, clockRef.current.offsetHeight);
-            setRadius(size / 2);
+            const size = Math.min(clockRef.current.offsetWidth, clockRef.current.offsetHeight)
+            setRadius(size / 2)
         }
-    }, []);
+    }, [])
+
+    const handleSetAlarm = useCallback((alarmTimeToSet: Date) => {
+        setAlarmTime(alarmTimeToSet)
+        setSettingAlarm(false)
+    }, [])
+
+    console.log(isAlarmTime)
 
     useEffect(() => {
-        const observer = new ResizeObserver(() => updateClockSize());
+        const observer = new ResizeObserver(() => updateClockSize())
         if (clockRef.current) {
-            observer.observe(clockRef.current);
+            observer.observe(clockRef.current)
         }
         return () => {
             if (clockRef.current) {
-                observer.unobserve(clockRef.current);
+                observer.unobserve(clockRef.current)
             }
-        };
-    }, [updateClockSize]);
+        }
+    }, [updateClockSize])
 
     const tickMarks = useTickMarksStyles(
         theme,
@@ -96,7 +118,7 @@ const AnalogClock: FC<AnalogClockProps> = (props) => {
         UserPrimaryTicksComponent,
         UserMajorTicksComponent,
         UserMinorTicksComponent
-    );
+    )
 
     const clockNumbers = useClockNumbers({
         theme,
@@ -111,7 +133,7 @@ const AnalogClock: FC<AnalogClockProps> = (props) => {
         hasMajorNumbers,
         PrimaryNumbersComponent,
         MajorNumbersComponent,
-    });
+    })
 
     return (
         <ThemeProvider theme={theme}>
@@ -131,9 +153,11 @@ const AnalogClock: FC<AnalogClockProps> = (props) => {
                 <SecondHand secondAngle={secondsAngle} />
                 <ClockCenterWapper>{ClockCenterComponent || <CenterCircle clockRadius={radius} />}</ClockCenterWapper>
                 {clockLogoSrcAndOffset && <ClockLogoWrapper offset={clockLogoSrcAndOffset.offset}>{clockLogoSrcAndOffset.cmp}</ClockLogoWrapper>}
+                {!settingAlarm && hasAlarm && <AlarmRing themeMode={analogColorThemeMode} iconSize={radius * 0.25} onClick={() => setSettingAlarm(true)} />}
+                {settingAlarm && <AlarmSetter width={radius * 2} top={0.3} left={0.195} onAlarmSet={handleSetAlarm} onCancel={() => setSettingAlarm(false)} />}
             </AnalogClockBackground>
         </ThemeProvider>
-    );
-};
+    )
+}
 
-export default AnalogClock;
+export default AnalogClock

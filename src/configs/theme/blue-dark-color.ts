@@ -13,6 +13,7 @@ const blueDarkColor: AppThemeModel['color'] = {
     primaryTicks: '#8ceaf5',
     majorTicks: '#038f9e',
     minorTicks: '#05dbf2',
+    ringColor: '#a3920f',
     1000: '#0D0D0D',
   },
   digitalClockColors: {

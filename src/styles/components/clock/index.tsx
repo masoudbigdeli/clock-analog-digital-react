@@ -61,7 +61,6 @@ export const HourHand = styled.div<HourHandProps & { theme?: AppThemeModel }>(({
         borderRadius: '5rem',
         zIndex: 6,
     }
-
 })
 
 interface MinuteHandProps {
@@ -113,7 +112,7 @@ export const ClockCenterWapper = styled.div({
     width: 'max-content',
     aspectRatio: '1/1',
     transform: "translate(-50%, -50%)",
-    zIndex: 9,
+    zIndex: 8,
 })
 
 interface CenterCircleProps {

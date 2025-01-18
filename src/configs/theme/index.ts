@@ -18,7 +18,7 @@ const themeMap: Record<THEME_MODE, AppThemeModel> = {
 };
 
 const appTheme = (themeMode: `${THEME_MODE}`): AppThemeModel => {
-    return themeMap[themeMode] || lightTheme; // Default to lightTheme if the mode is not found
+    return themeMap[themeMode] || lightTheme; 
 };
 
 export default appTheme;
@@ -44,6 +44,7 @@ export const analogClockColors = {
     primaryTicks: 700,
     majorTicks: 800,
     minorTicks: 900,
+    ringColor: 1100,
     1000: 1000,
 }
 export const digitalClockColors = {
