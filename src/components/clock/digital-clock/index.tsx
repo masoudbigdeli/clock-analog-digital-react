@@ -22,7 +22,7 @@ import useCheckAlarm from '../../../hooks/use-check-alarm'
 const DigitalClock: FC<DigitalClockProps> = (props) => {
   const {
     digitalColorThemeMode = 'LIGHT',
-    hasAlarm = true,
+    hasAlarm = false,
     onAlarm = () => console.log('digital clock alarm!'),
     padding = 0,
     twentyFourHours = false,
@@ -30,7 +30,6 @@ const DigitalClock: FC<DigitalClockProps> = (props) => {
     activeSegmentColor,
     inactiveSegmentColor,
     dotsColor,
-    digitalClockLogoComponent = <>Logo</>
   } = props
 
   const { seconds, minutes, hours } = useTime()
@@ -65,7 +64,7 @@ const DigitalClock: FC<DigitalClockProps> = (props) => {
   const handleSetAlarm = useCallback((alarmTimeToSet: Date) => {
     setSettingAlarm(false)
     setAlarmTime(alarmTimeToSet)
-}, [])
+  }, [])
 
   useLayoutEffect(() => {
     const observer = new ResizeObserver(() => {

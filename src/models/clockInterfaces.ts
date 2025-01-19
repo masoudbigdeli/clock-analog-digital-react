@@ -27,6 +27,11 @@ export interface ClockBaseProps {
 export interface AnalogClockProps extends ClockBaseProps {
     clockMode: 'analog';
     analogColorThemeMode?: `${THEME_MODE}`
+    clockBackgroundColor?: string
+    clockBorderColor?:string
+    hourHandColor?: string
+    minuteHandColor?: string
+    secondHandColor?: string
     clockBorderThickness?: number;
     clockNumbersType?: string;
     clockLogoSrcAndOffset?: { cmp: React.ReactNode; offset: number };
@@ -57,8 +62,6 @@ export interface DigitalClockProps extends ClockBaseProps {
     activeSegmentColor?: string
     inactiveSegmentColor? : string
     dotsColor?: string
-    digitalClockLogoComponent?: React.ReactNode;
-
 }
 
 export type ClockProps = AnalogClockProps | DigitalClockProps;

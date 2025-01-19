@@ -14,8 +14,13 @@ import useCheckAlarm from "../../../hooks/use-check-alarm"
 const AnalogClock: FC<AnalogClockProps> = (props) => {
     const {
         analogColorThemeMode = 'DARK',
-        hasAlarm = true,
+        hasAlarm = false,
         onAlarm = () => console.log('analog clock alarm!'),
+        clockBackgroundColor,
+        clockBorderColor,
+        hourHandColor,
+        minuteHandColor,
+        secondHandColor,
         clockBorderThickness = 2,
         clockLogoSrcAndOffset = { cmp: <></>, offset: 0 },
         clockNumbersType = 'ENGLISH',
@@ -137,7 +142,12 @@ const AnalogClock: FC<AnalogClockProps> = (props) => {
 
     return (
         <ThemeProvider theme={theme}>
-            <AnalogClockBackground ref={clockRef} borderThikness={effectiveClockBorderThickness * (radius / 16 * 0.08)}>
+            <AnalogClockBackground 
+                ref={clockRef} 
+                borderThikness={effectiveClockBorderThickness * (radius / 16 * 0.08)} 
+                borderColor={clockBorderColor || ''} 
+                backgroundColor={clockBackgroundColor || ''} 
+            >
                 {tickMarks.map((tick, index) => (
                     <div style={{ ...tick }} key={index}>
                         {[0, 15, 30, 45].includes(index) ? UserPrimaryTicksComponent : index % 5 === 0 ? UserMajorTicksComponent : UserMinorTicksComponent}
@@ -148,9 +158,9 @@ const AnalogClock: FC<AnalogClockProps> = (props) => {
                         {num}
                     </ClockNumberWrapper>
                 ))}
-                <HourHand hourAngle={hourAngle} />
-                <MinuteHand minuteAngle={minutesAngle} />
-                <SecondHand secondAngle={secondsAngle} />
+                <HourHand hourAngle={hourAngle} userBackgroundColor={hourHandColor || ''}/>
+                <MinuteHand minuteAngle={minutesAngle} userBackgroundColor={minuteHandColor || ''}/>
+                <SecondHand secondAngle={secondsAngle} userBackgroundColor={secondHandColor || ''}/>
                 <ClockCenterWapper>{ClockCenterComponent || <CenterCircle clockRadius={radius} />}</ClockCenterWapper>
                 {clockLogoSrcAndOffset && <ClockLogoWrapper offset={clockLogoSrcAndOffset.offset}>{clockLogoSrcAndOffset.cmp}</ClockLogoWrapper>}
                 {!settingAlarm && hasAlarm && <AlarmRing themeMode={analogColorThemeMode} iconSize={radius * 0.25} onClick={() => setSettingAlarm(true)} />}
