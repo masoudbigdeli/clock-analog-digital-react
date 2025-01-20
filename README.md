@@ -1,4 +1,4 @@
-# Clock React Component
+# Clock React Component (light weight and customizable)
 
 `clock-analog-digital-react` is a React component that provides two modes for displaying a clock: **Analog** and **Digital**. All inner components are customizable by the user, and you can easily configure your desired clock.
 
@@ -133,3 +133,6 @@ This configuration controls the colors specific to the digital clock's segments 
 | `alarmRingColor`             | `string`| Defines the color of the alarm ring for the digital clock.           |
 
 ---
+
+### Support:  
+For support contact: masoud8bigdeli@gmail.com
