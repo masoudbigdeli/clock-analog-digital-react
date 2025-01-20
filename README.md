@@ -3,6 +3,9 @@
 `clock-analog-digital-react` is a React component that provides two modes for displaying a clock: **Analog** and **Digital**. All inner components are customizable by the user, and you can easily configure your desired clock.
 
 You can view a live demo and configure your clock [here](https://react-clock-analog-digital-demo.vercel.app).
+<div align="center">
+   <img style="width:400px;" src="https://github.com/masoudbigdeli/react-clock-analog-digital-demo/blob/master/public/clock-analog-digital-demo.gif" alt="logo"/>
+</div>
 
 ## Installation
 
