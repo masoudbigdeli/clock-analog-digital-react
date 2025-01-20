@@ -19,7 +19,7 @@ import useCheckAlarm from "../../../hooks/use-check-alarm";
 const DigitalClock: FC<DigitalClockProps> = (props) => {
   const {
     hasAlarm = false,
-    onAlarm = () => console.log("digital clock alarm!"),
+    onAlarm = () => { },
     padding = 0,
     twentyFourHours = false,
     colorConfiguration = {}, // Use the grouped color props
@@ -158,6 +158,8 @@ const DigitalClock: FC<DigitalClockProps> = (props) => {
           left={0.25}
           onAlarmSet={handleSetAlarm}
           onCancel={() => setSettingAlarm(false)}
+          backgroundColor={backgroundColor}
+          boxShadowColor={activeSegmentColor}
         />
       )}
     </DigitalClockBackground>

@@ -7,9 +7,11 @@ interface AlarmSetterProps {
     left: number
     onAlarmSet: (alarmDate: Date) => void
     onCancel: () => void
+    backgroundColor?: string
+    boxShadowColor?: string
 }
 
-const AlarmSetter: FC<AlarmSetterProps> = ({ top, left, width, onAlarmSet, onCancel }) => {
+const AlarmSetter: FC<AlarmSetterProps> = ({ top, left, width, backgroundColor, boxShadowColor, onAlarmSet, onCancel }) => {
     const [time, setTime] = useState("00:00");
 
     const handleTimeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -24,7 +26,7 @@ const AlarmSetter: FC<AlarmSetterProps> = ({ top, left, width, onAlarmSet, onCan
     };
 
     return (
-        <AlarmSetterWrapper width={width} top={top} left={left}>
+        <AlarmSetterWrapper width={width} top={top} left={left} backgroundColor={backgroundColor && backgroundColor} boxShadowColor={boxShadowColor && boxShadowColor}>
             <input
                 id="time-picker"
                 type="time"
@@ -39,7 +41,7 @@ const AlarmSetter: FC<AlarmSetterProps> = ({ top, left, width, onAlarmSet, onCan
             />
             <BtnsWrapper>
                 <SetterBtn onClick={handleSetAlarm}>Set</SetterBtn>
-                <SetterBtn onClick={onCancel} style={{backgroundColor: '#8f3636'}}>Cancel</SetterBtn>
+                <SetterBtn onClick={onCancel} style={{ backgroundColor: '#eb1328' }}>Cancel</SetterBtn>
             </BtnsWrapper>
         </AlarmSetterWrapper>
     );

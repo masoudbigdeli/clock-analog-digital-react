@@ -19,7 +19,7 @@ import useCheckAlarm from "../../../hooks/use-check-alarm";
 const AnalogClock: FC<AnalogClockProps> = (props) => {
   const {
     hasAlarm = false,
-    onAlarm = () => console.log("analog clock alarm!"),
+    onAlarm = () => {},
     clockBorderThickness = 2,
     clockLogoSrcAndOffset = { cmp: <></>, offset: 0 },
     clockNumbersType = "ENGLISH",
@@ -220,6 +220,8 @@ const AnalogClock: FC<AnalogClockProps> = (props) => {
             left={0.195}
             onAlarmSet={handleSetAlarm}
             onCancel={() => setSettingAlarm(false)}
+            backgroundColor={clockBackgroundColor}
+            boxShadowColor={primaryNumbersColor}
           />
         )}
       </AnalogClockBackground>

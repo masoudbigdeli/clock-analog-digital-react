@@ -25,9 +25,11 @@ interface AlarmSetterWrapperProps {
     width: number
     top: number
     left: number
+    backgroundColor?: string
+    boxShadowColor?: string
 }
 
-export const AlarmSetterWrapper = styled.div<AlarmSetterWrapperProps>(({ width, top, left }) => {
+export const AlarmSetterWrapper = styled.div<AlarmSetterWrapperProps>(({ width, top, left, backgroundColor, boxShadowColor }) => {
     return {
         boxSizing: 'border-box',
         width: `${width * 0.50}px`,
@@ -38,12 +40,12 @@ export const AlarmSetterWrapper = styled.div<AlarmSetterWrapperProps>(({ width, 
         display: 'flex',
         flexDirection: 'column',
         gap: `${width * 0.0274}px`,
-        backgroundColor: 'black',
+        backgroundColor: backgroundColor ? backgroundColor : 'black',
         position: 'absolute',
         top: `${width * top}px`,
         left: `${width * left}px`,
         borderRadius: '1rem',
-        boxShadow: `0px 0px 14px 1px white`,
+        boxShadow: `0px 0px 14px 1px ${boxShadowColor ? boxShadowColor : 'white'}`,
         zIndex: 8
     }
 
@@ -91,7 +93,8 @@ export const SetterBtn = styled.div({
     width: '45%',
     minWidth: '45%',
     maxWidth: '45%',
-    backgroundColor: '#4f8f36',
+    backgroundColor: '#04bf2c',
+    color: 'white',
     borderRadius: '1rem',
     display: 'flex',
     justifyContent: 'center',
