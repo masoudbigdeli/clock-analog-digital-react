@@ -1,6 +1,6 @@
 # Clock React Component
 
-clock-analog-digital-react is a React component that provides two modes for displaying a clock: **Analog** and **Digital**. All inner components are customizable by the user, and you can easily configure your desired clock.
+`clock-analog-digital-react` is a React component that provides two modes for displaying a clock: **Analog** and **Digital**. All inner components are customizable by the user, and you can easily configure your desired clock.
 
 You can view a live demo and configure your clock [here](https://react-clock-analog-digital-demo.vercel.app).
 
@@ -8,25 +8,25 @@ You can view a live demo and configure your clock [here](https://react-clock-ana
 
 To install the package, run the following command:
 
-bash
+```bash
 npm i clock-analog-digital-react
-
+```
 
 ## Importing the Component
 
-You can import the Clock component into your React project like this:
+You can import the `Clock` component into your React project like this:
 
-typescript
+```typescript
 import Clock from 'clock-analog-digital-react';
-
+```
 
 ## Usage
 
 ### Analog Clock
 
-To display the analog clock, set the clockMode prop to 'analog'.
+To display the analog clock, set the `clockMode` prop to `'analog'`.
 
-tsx
+```tsx
 import Clock from 'clock-analog-digital-react';
 
 const App = () => {
@@ -36,13 +36,13 @@ const App = () => {
 };
 
 export default App;
-
+```
 
 ### Digital Clock
 
-To display the digital clock, set the clockMode prop to 'digital'.
+To display the digital clock, set the `clockMode` prop to `'digital'`.
 
-tsx
+```tsx
 import Clock from 'clock-analog-digital-react';
 
 const App = () => {
@@ -52,6 +52,7 @@ const App = () => {
 };
 
 export default App;
+```
 
 ## Props
 
