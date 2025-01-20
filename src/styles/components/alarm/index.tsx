@@ -1,5 +1,4 @@
 import styled from '@emotion/styled'
-import AppThemeModel from '../../../models/theme-model'
 
 
 const IconWrapper = styled.div({
@@ -28,7 +27,7 @@ interface AlarmSetterWrapperProps {
     left: number
 }
 
-export const AlarmSetterWrapper = styled.div<AlarmSetterWrapperProps & { theme?: AppThemeModel }>(({ width, top, left, theme }) => {
+export const AlarmSetterWrapper = styled.div<AlarmSetterWrapperProps>(({ width, top, left }) => {
     return {
         boxSizing: 'border-box',
         width: `${width * 0.50}px`,
@@ -39,12 +38,12 @@ export const AlarmSetterWrapper = styled.div<AlarmSetterWrapperProps & { theme?:
         display: 'flex',
         flexDirection: 'column',
         gap: `${width * 0.0274}px`,
-        backgroundColor: theme.color.analogClockColors.background,
+        backgroundColor: 'black',
         position: 'absolute',
         top: `${width * top}px`,
         left: `${width * left}px`,
         borderRadius: '1rem',
-        boxShadow: `0px 0px 14px 1px ${theme.color.analogClockColors.primaryNumbers}`,
+        boxShadow: `0px 0px 14px 1px white`,
         zIndex: 8
     }
 

@@ -1,67 +1,77 @@
-import THEME_MODE from "../enums/theme-mode";
 
 export interface HandleProps {
-    width: number;
-    height: number;
+    width: number
+    height: number
 }
 
 export interface ClockCenterProps {
-    color: string;
-    radius: number;
+    color: string
+    radius: number
 }
 
 export interface ClockNumbersProps {
-    majorNumbersFontSize: number;
-    primaryNumbersFontSize: number;
-    type: string;
-    majorNumbersColor: string;
-    primaryNumbersColor: string;
+    majorNumbersFontSize: number
+    primaryNumbersFontSize: number
+    type: string
+    majorNumbersColor: string
+    primaryNumbersColor: string
 }
 
 export interface ClockBaseProps {
-    clockMode: 'analog' | 'digital';
+    clockMode: 'analog' | 'digital'
     hasAlarm?: boolean
     onAlarm: () => void
 }
 
-export interface AnalogClockProps extends ClockBaseProps {
-    clockMode: 'analog';
-    analogColorThemeMode?: `${THEME_MODE}`
+export interface AnalogClockColorConfiguration {
     clockBackgroundColor?: string
-    clockBorderColor?:string
+    clockBorderColor?: string
     hourHandColor?: string
     minuteHandColor?: string
     secondHandColor?: string
-    majorNumbersColor?: string;
-    primaryNumbersColor?: string;
-    clockBorderThickness?: number;
-    clockNumbersType?: string;
-    clockLogoSrcAndOffset?: { cmp: React.ReactNode; offset: number };
-    hasPrimaryTicks?: boolean;
-    hasMajorTicks?: boolean;
-    hasMinorTicks?: boolean;
-    hasPrimaryNumbers?: boolean;
-    hasMajorNumbers?: boolean;
-    majorNumbersFontSize?: number;
-    primaryNumbersFontSize?: number;
-    UserPrimaryTicksComponent?: React.ReactNode;
-    UserMajorTicksComponent?: React.ReactNode;
-    UserMinorTicksComponent?: React.ReactNode;
-    PrimaryNumbersComponent?: React.ReactNode;
-    MajorNumbersComponent?: React.ReactNode;
-    ClockCenterComponent?: React.ReactNode;
+    majorNumbersColor?: string
+    primaryNumbersColor?: string
+    primaryTicksColor?: string
+    majorTicksColor?: string
+    minorTicksColor?: string
+    centerCircleColor?: string
+    alarmRingColor?: string
+}
 
+export interface DigitalClockColorConfiguration {
+    backgroundColor?: string
+    activeSegmentColor?: string
+    inactiveSegmentColor?: string
+    dotsColor?: string
+    alarmRingColor?: string
+}
+
+export interface AnalogClockProps extends ClockBaseProps {
+    clockMode: 'analog'
+    colorConfiguration?: AnalogClockColorConfiguration
+    clockBorderThickness?: number
+    clockNumbersType?: string
+    clockLogoSrcAndOffset?: { cmp: React.ReactNode, offset: number }
+    hasPrimaryTicks?: boolean
+    hasMajorTicks?: boolean
+    hasMinorTicks?: boolean
+    hasPrimaryNumbers?: boolean
+    hasMajorNumbers?: boolean
+    majorNumbersFontSize?: number
+    primaryNumbersFontSize?: number
+    UserPrimaryTicksComponent?: React.ReactNode
+    UserMajorTicksComponent?: React.ReactNode
+    UserMinorTicksComponent?: React.ReactNode
+    PrimaryNumbersComponent?: React.ReactNode
+    MajorNumbersComponent?: React.ReactNode
+    ClockCenterComponent?: React.ReactNode
 }
 
 export interface DigitalClockProps extends ClockBaseProps {
-    clockMode: 'digital';
-    digitalColorThemeMode?: `${THEME_MODE}`
-    backgroundColor?: string
-    activeSegmentColor?: string
-    inactiveSegmentColor? : string
-    dotsColor?: string
+    clockMode: 'digital'
+    colorConfiguration?: DigitalClockColorConfiguration
     twentyFourHours?: boolean
     padding?: number
 }
 
-export type ClockProps = AnalogClockProps | DigitalClockProps;
+export type ClockProps = AnalogClockProps | DigitalClockProps

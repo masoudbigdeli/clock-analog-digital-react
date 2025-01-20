@@ -1,5 +1,4 @@
 import styled from "@emotion/styled"
-import AppThemeModel from "../../../models/theme-model"
 
 interface ClockBackgroundProps {
     borderThikness: number
@@ -7,7 +6,7 @@ interface ClockBackgroundProps {
     backgroundColor: string
 }
 
-const AnalogClockBackground = styled.div<ClockBackgroundProps & { theme?: AppThemeModel }>(({ borderThikness, theme, backgroundColor, borderColor }) => {
+const AnalogClockBackground = styled.div<ClockBackgroundProps>(({ borderThikness, backgroundColor, borderColor }) => {
     return {
         boxSizing: 'border-box',
         width: "100%",
@@ -16,9 +15,9 @@ const AnalogClockBackground = styled.div<ClockBackgroundProps & { theme?: AppThe
         position: "relative",
         aspectRatio: "1 / 1",
         borderRadius: "50%",
-        border: `${borderThikness}rem solid ${borderColor ? borderColor : theme.color.analogClockColors['border']}`,
+        border: `${borderThikness}rem solid ${borderColor ? borderColor : '#000105'}`,
         margin: "0 auto",
-        backgroundColor: backgroundColor ? backgroundColor : theme.color.analogClockColors['background']
+        backgroundColor: backgroundColor ? backgroundColor : '#01061a'
     }
 })
 
@@ -51,14 +50,14 @@ interface HourHandProps {
     userBackgroundColor: string
 }
 
-export const HourHand = styled.div<HourHandProps & { theme?: AppThemeModel }>(({ hourAngle, userBackgroundColor, theme }) => {
+export const HourHand = styled.div<HourHandProps>(({ hourAngle, userBackgroundColor,  }) => {
     return {
         position: "absolute",
         top: "50%",
         left: "50%",
         width: '3%',
         height: '26%',
-        backgroundColor: userBackgroundColor ? userBackgroundColor : theme?.color.analogClockColors['hour'],
+        backgroundColor: userBackgroundColor ? userBackgroundColor : '#82a7cf',
         transform: `translate(-50%, -100%) rotate(${hourAngle}deg)`,
         transformOrigin: "bottom",
         borderRadius: '5rem',
@@ -72,14 +71,14 @@ interface MinuteHandProps {
 
 }
 
-export const MinuteHand = styled.div<MinuteHandProps & { theme?: AppThemeModel }>(({ minuteAngle, userBackgroundColor, theme }) => {
+export const MinuteHand = styled.div<MinuteHandProps>(({ minuteAngle, userBackgroundColor,  }) => {
     return {
         position: "absolute",
         top: "50%",
         left: "50%",
         width: '2%',
         height: '37%',
-        backgroundColor: userBackgroundColor ? userBackgroundColor : theme?.color.analogClockColors['minute'],
+        backgroundColor: userBackgroundColor ? userBackgroundColor : '#046e5e',
         transform: `translate(-50%, -100%) rotate(${minuteAngle}deg)`,
         transformOrigin: "bottom",
         borderRadius: '5rem',
@@ -94,14 +93,14 @@ interface SecondHandProps {
 
 }
 
-export const SecondHand = styled.div<SecondHandProps & { theme?: AppThemeModel }>(({ secondAngle, userBackgroundColor, theme }) => {
+export const SecondHand = styled.div<SecondHandProps>(({ secondAngle, userBackgroundColor,  }) => {
     return {
         position: "absolute",
         top: "50%",
         left: "50%",
         width: '1%',
         height: '45%',
-        backgroundColor: userBackgroundColor ? userBackgroundColor : theme?.color.analogClockColors['second'],
+        backgroundColor: userBackgroundColor ? userBackgroundColor : '#f0738c',
         transform: `translate(-50%, -100%) rotate(${secondAngle}deg)`,
         transformOrigin: "bottom",
         borderRadius: '4rem',
@@ -124,11 +123,12 @@ export const ClockCenterWapper = styled.div({
 
 interface CenterCircleProps {
     clockRadius: number
+    backgroundColor?: string
 }
 
-export const CenterCircle = styled.div<CenterCircleProps & { theme?: AppThemeModel }>(({ theme, clockRadius }) => {
+export const CenterCircle = styled.div<CenterCircleProps>(({clockRadius, backgroundColor }) => {
     return {
-        backgroundColor: theme?.color.analogClockColors['center'],
+        backgroundColor: backgroundColor ? backgroundColor : '#0c0338',
         width: `${clockRadius * 0.0055}rem`,
         borderRadius: "50%",
         aspectRatio: '1/1',
@@ -151,8 +151,8 @@ export const ClockLogoWrapper = styled.div<ClockLogoWrapper>(({ offset }) => {
 
 
 
-export const DigitalClockWrapper = styled.div<{ theme?: AppThemeModel }>(({ theme }) => {
-    return {
+export const DigitalClockWrapper = styled.div({
+
         boxSizing: 'border-box',
         width: "100%",
         minWidth: "100%",
@@ -162,13 +162,11 @@ export const DigitalClockWrapper = styled.div<{ theme?: AppThemeModel }>(({ them
         justifyContent: 'center',
         alignItems: 'center',
         margin: "0 auto",
-        backgroundColor: theme?.color?.digitalClockColors['background'],
-        border: `solid 2px ${theme?.color?.digitalClockColors.border}`,
-    }
+        backgroundColor: 'blue',
+        border: 'solid 2px red',
 })
 
-export const LargeDigitWrapper = styled.div<{ theme?: AppThemeModel }>(({ theme }) => {
-    return {
+export const LargeDigitWrapper = styled.div({
         boxSizing: 'border-box',
         width: "max-content",
         minWidth: "max-content",
@@ -179,7 +177,6 @@ export const LargeDigitWrapper = styled.div<{ theme?: AppThemeModel }>(({ theme 
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: theme?.color?.digitalClockColors['background'],
-        border: `solid 2px ${theme?.color?.digitalClockColors.border}`,
-    }
+        backgroundColor: 'white',
+        border: 'solid 2px black',
 })

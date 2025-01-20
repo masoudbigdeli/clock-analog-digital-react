@@ -1,5 +1,4 @@
 import styled from '@emotion/styled'
-import AppThemeModel from '../../../../models/theme-model'
 import { CSSProperties } from 'react'
 
 interface DigitalClockBackgroundProps {
@@ -7,8 +6,8 @@ interface DigitalClockBackgroundProps {
   backgroundColor: string
 }
 
-export const DigitalClockBackground = styled.div<DigitalClockBackgroundProps & { theme?: AppThemeModel }>(
-  ({ theme, padding, backgroundColor }) => ({
+export const DigitalClockBackground = styled.div<DigitalClockBackgroundProps >(
+  ({ padding, backgroundColor }) => ({
     boxSizing: 'border-box',
     width: '100%',
     aspectRatio: '3.5 / 1',
@@ -17,7 +16,7 @@ export const DigitalClockBackground = styled.div<DigitalClockBackgroundProps & {
     alignItems: 'center',
     padding: `${padding}rem`,
     direction: 'ltr',
-    backgroundColor: backgroundColor || theme.color.digitalClockColors.background,
+    backgroundColor: backgroundColor || 'white',
     position: 'relative'
   })
 )
@@ -39,12 +38,12 @@ interface ClockDotProps {
   backgroundColor: string
 }
 
-export const ClockDot = styled.div<ClockDotProps & { theme?: AppThemeModel }>(
-  ({ theme, backgroundColor }) => ({
+export const ClockDot = styled.div<ClockDotProps >(
+  ({ backgroundColor }) => ({
     boxSizing: 'border-box',
     width: '100%',
     height: '12.5%',
-    backgroundColor: backgroundColor || theme.color.digitalClockColors.dotsColor,
+    backgroundColor: backgroundColor || 'black',
     clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)',
     position: 'absolute',
     top: '31.25%',

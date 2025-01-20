@@ -1,6 +1,5 @@
 import React from "react"
 import { CSSProperties } from "react"
-import AppThemeModel from "../models/theme-model"
 
 export type TickMarkType = "minor" | "major" | "primary"
 
@@ -9,12 +8,14 @@ export interface TickMarkStyle extends CSSProperties {
 }
 
 const useTickMarksStyles = (
-  theme: AppThemeModel,
   radius: number,
   clockBorderThickness: number,
   hasPrimaryTicks: boolean,
   hasMajorTicks: boolean,
   hasMinorTicks: boolean,
+  primaryTicksColor?:string,
+  majorTicksColor?:string,
+  minorTicksColor?:string,
   UserPrimaryTicksComponent?: React.ReactNode,
   UserMajorTicksComponent?: React.ReactNode,
   UserMinorTicksComponent?: React.ReactNode
@@ -65,7 +66,7 @@ const useTickMarksStyles = (
         UserMinorTicksComponent,
         `${0.001 * radius}rem`,
         `${0.002 * radius}rem`,
-        theme.color.analogClockColors["minorTicks"],
+        minorTicksColor ? minorTicksColor : 'cyan',
         hasMinorTicks
       )
       width = minorStyles.width
@@ -78,7 +79,7 @@ const useTickMarksStyles = (
         UserMajorTicksComponent,
         `${0.0015 * radius}rem`,
         `${0.003 * radius}rem`,
-        theme.color.analogClockColors["majorTicks"],
+        majorTicksColor ? majorTicksColor : '#f7bee2',
         hasMajorTicks
       )
       width = majorStyles.width
@@ -91,7 +92,7 @@ const useTickMarksStyles = (
         UserPrimaryTicksComponent,
         `${0.0015 * radius}rem`,
         `${0.0045 * radius}rem`,
-        theme.color.analogClockColors["primaryTicks"],
+        primaryTicksColor ? primaryTicksColor : '#e9f2ef',
         hasPrimaryTicks
       )
       width = primaryStyles.width

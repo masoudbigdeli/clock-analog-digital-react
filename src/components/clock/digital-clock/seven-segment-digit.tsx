@@ -1,10 +1,6 @@
 import React, { useCallback, useMemo } from "react";
-import { useTheme } from "@emotion/react";
-import AppThemeModel from "../../../models/theme-model";
 
-declare module "@emotion/react" {
-  export interface Theme extends AppThemeModel {}
-}
+
 
 type SevenSegmentDigitProps = {
   segmentsOn: boolean[];
@@ -13,24 +9,21 @@ type SevenSegmentDigitProps = {
 };
 
 const SevenSegmentDigit: React.FC<SevenSegmentDigitProps> = ({ segmentsOn, activeSegmentColor, inactiveSegmentColor }) => {
-  const theme = useTheme();
 
   if (segmentsOn.length !== 7) {
     throw new Error("segmentsOn must have exactly 7 boolean values.");
   }
 
-  // Memoized colors based on props and theme
   const activeColor = useMemo(
-    () => activeSegmentColor || theme.color?.digitalClockColors?.activeSegment || "black",
-    [activeSegmentColor, theme.color?.digitalClockColors?.activeSegment]
+    () => activeSegmentColor ||  "black",
+    [activeSegmentColor]
   );
 
   const inactiveColor = useMemo(
-    () => inactiveSegmentColor || theme.color?.digitalClockColors?.inactiveSegment || "gray",
-    [inactiveSegmentColor, theme.color?.digitalClockColors?.inactiveSegment]
+    () => inactiveSegmentColor || "gray",
+    [inactiveSegmentColor]
   );
 
-  // Callback for determining the fill color of a segment
   const getFillColor = useCallback(
     (isOn: boolean) => (isOn ? activeColor : inactiveColor),
     [activeColor, inactiveColor]
