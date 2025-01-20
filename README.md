@@ -1,4 +1,4 @@
-# Clock React Component (light weight and customizable)
+# Clock React Component (lightweight and customizable)
 
 `clock-analog-digital-react` is a React component that provides two modes for displaying a clock: **Analog** and **Digital**. All inner components are customizable by the user, and you can easily configure your desired clock.
 
