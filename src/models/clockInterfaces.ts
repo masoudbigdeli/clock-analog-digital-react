@@ -32,6 +32,8 @@ export interface AnalogClockProps extends ClockBaseProps {
     hourHandColor?: string
     minuteHandColor?: string
     secondHandColor?: string
+    majorNumbersColor?: string;
+    primaryNumbersColor?: string;
     clockBorderThickness?: number;
     clockNumbersType?: string;
     clockLogoSrcAndOffset?: { cmp: React.ReactNode; offset: number };
@@ -42,8 +44,6 @@ export interface AnalogClockProps extends ClockBaseProps {
     hasMajorNumbers?: boolean;
     majorNumbersFontSize?: number;
     primaryNumbersFontSize?: number;
-    majorNumbersColor?: string;
-    primaryNumbersColor?: string;
     UserPrimaryTicksComponent?: React.ReactNode;
     UserMajorTicksComponent?: React.ReactNode;
     UserMinorTicksComponent?: React.ReactNode;
@@ -56,12 +56,12 @@ export interface AnalogClockProps extends ClockBaseProps {
 export interface DigitalClockProps extends ClockBaseProps {
     clockMode: 'digital';
     digitalColorThemeMode?: `${THEME_MODE}`
-    padding?: number
-    twentyFourHours?: boolean
     backgroundColor?: string
     activeSegmentColor?: string
     inactiveSegmentColor? : string
     dotsColor?: string
+    twentyFourHours?: boolean
+    padding?: number
 }
 
 export type ClockProps = AnalogClockProps | DigitalClockProps;
